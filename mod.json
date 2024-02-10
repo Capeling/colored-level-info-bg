@@ -1,6 +1,16 @@
 {
 	"geode": "2.0.0-beta.15",
-	"gd": "2.204",
+	"gd": {
+		"win": "2.204",
+		"android": "2.205"
+	},
+	"dependencies": [
+        {
+            "id": "geode.node-ids",
+            "version": "v1.3.0",
+            "importance": "required"
+        }
+    ],
 	"version": "v1.0.0",
 	"id": "capeling.colored_level_info_bg",
 	"name": "Coloured Level Page",
