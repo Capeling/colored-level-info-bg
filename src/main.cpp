@@ -26,7 +26,7 @@ class $modify(LevelInfoLayer) {
 		if(!LevelInfoLayer::init(level, isGauntlet))
 			return false;
 		CCSprite* m_background = (CCSprite*)(this->getChildByID("background"));
-		auto color = diffToColor(level->getAverageDifficulty() + (level->m_demon.value() * 5));
+		auto color = diffToColor(static_cast<int>(level->getAverageDifficulty()) + (level->m_demon.value() * 5));
 		log::info("{}", color);
 		m_background->setColor(color);
 		return true;
