@@ -1,3 +1,3 @@
-# coloredlevelinfobg
+# Coloured Level Page
 
-This is where she makes a mod.
+Colours the level page based off of the level difficulty

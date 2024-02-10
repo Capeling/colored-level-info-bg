@@ -1,3 +1,3 @@
-# Template Mod
+# Coloured Level Page
 
-Edit about.md to change this
+Colours the level page based off of the level difficulty
