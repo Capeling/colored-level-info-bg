@@ -37,9 +37,6 @@ ccColor3B levelToColor(GJGameLevel *level) {
 class $modify(LevelInfoLayer) {
 	bool init(GJGameLevel* level, bool p1) {
 		if(!LevelInfoLayer::init(level, p1)) return false;
-		// gauntlet levels and the weekly demon have a dark bg rather than the default one, so let them keep it
-		if (level->m_gauntletLevel || level->m_gauntletLevel2) return true;
-		if (level->m_dailyID.value() && level->m_demon.value()) return true;
 
 		CCSprite* m_background = (CCSprite*)(this->getChildByID("background"));
 		ccColor3B color = levelToColor(level);
@@ -50,9 +47,6 @@ class $modify(LevelInfoLayer) {
 
 	void onPlay(CCObject *sender) {
 		LevelInfoLayer::onPlay(sender);
-		// gauntlet levels and the weekly demon have a dark bg rather than the default one, so let them keep it
-		if (m_level->m_gauntletLevel || m_level->m_gauntletLevel2) return;
-		if (m_level->m_dailyID.value() && m_level->m_demon.value()) return;
 
 		CCMenuItemSpriteExtra *playBtn = dynamic_cast<CCMenuItemSpriteExtra*>(m_playBtnMenu->getChildByID("play-button"));
 		CCSprite *playBtnSpr = dynamic_cast<CCSprite*>(playBtn->getChildren()->objectAtIndex(0));
@@ -60,8 +54,8 @@ class $modify(LevelInfoLayer) {
 		ccColor3B color = levelToColor(m_level);
 		ccColor3B darker_color = { GLubyte(color.r/2), GLubyte(color.g/2), GLubyte(color.b/2) };
 
-		dynamic_cast<CCSprite*>(playBtnSpr->getChildren()->objectAtIndex(0))->setColor(darker_color);
-		dynamic_cast<CCSprite*>(playBtnSpr->getChildren()->objectAtIndex(1))->setColor(darker_color);
-		dynamic_cast<CCSprite*>(playBtnSpr->getChildren()->objectAtIndex(2))->setColor(color);
+		static_cast<CCSprite*>(playBtnSpr->getChildren()->objectAtIndex(0))->setColor(darker_color);
+		static_cast<CCSprite*>(playBtnSpr->getChildren()->objectAtIndex(1))->setColor(darker_color);
+		static_cast<CCSprite*>(playBtnSpr->getChildren()->objectAtIndex(2))->setColor(color);
 	}
 };
