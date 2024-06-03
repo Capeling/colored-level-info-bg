@@ -6,12 +6,13 @@ using namespace geode::prelude;
 ccColor3B diffToColor(int diff) {
 	switch(diff) {
 		default: return {0, 102, 255};
+		case -1: return { 255, 162, 48 };
 		case 0: return { 122, 122, 122 };
 		case 1: return { 4, 0, 255 };
 		case 2: return { 0, 180, 0 };
 		case 3: return { 255, 196, 0 };
 		case 4: return { 255, 115, 0 };
-		case 5: return { 255, 0, 234 };
+		case 5: return { 183, 0, 183 };
 		case 6: return { 204, 0, 255 };
 		case 7: return { 223, 0, 223 };
 		case 8:
@@ -25,10 +26,20 @@ class $modify(LevelInfoLayer) {
 	bool init(GJGameLevel* level, bool isGauntlet) {
 		if(!LevelInfoLayer::init(level, isGauntlet))
 			return false;
-		CCSprite* m_background = (CCSprite*)(this->getChildByID("background"));
-		auto color = diffToColor(level->getAverageDifficulty() + (level->m_demon.value() * 5));
-		log::info("{}", color);
-		m_background->setColor(color);
+		
+		CCSprite* bg = getChildOfType<CCSprite>(this, 0);
+
+		int averageDiff = level->getAverageDifficulty();
+
+		if (level->m_autoLevel) {
+			auto autoGradient = CCLayerGradient::create({ 255, 235, 51, 255 }, { 0, 197, 227, 255 });
+			bg->setColor({ 138, 138, 138 });
+			addChild(autoGradient, -2);
+		}
+		else {
+			auto color = diffToColor(averageDiff + (level->m_demon.value() * 5));
+			bg->setColor(color);
+		}
 		return true;
 	}
 };
