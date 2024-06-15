@@ -45,7 +45,7 @@ class $modify(LevelInfoLayer) {
 	void playStep2() {
 		LevelInfoLayer::playStep2();
 		auto color = diffToColor(m_level->m_autoLevel ? -1 : m_level->getAverageDifficulty() + (m_level->m_demon.value() * 5));
-		ccColor3B darkerColor = { color.r / 2, color.g / 2, color.b / 2 };
+		ccColor3B darkerColor = { GLubyte(color.r / 2), GLubyte(color.g / 2), GLubyte(color.b / 2) };
 
 		getChildOfType<CCSprite>(m_playSprite, 0)->setColor(darkerColor);
 		getChildOfType<CCSprite>(m_playSprite, 1)->setColor(color);
