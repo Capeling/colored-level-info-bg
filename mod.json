@@ -9,5 +9,6 @@
 	"id": "capeling.colored_level_info_bg",
 	"name": "Coloured Level Page",
 	"developer": "Capeling",
-	"description": "Colours the level page based off of the level difficulty"
+	"description": "Colours the level page based off of the level difficulty",
+	"repository": "https://github.com/Capeling/colored-level-info-bg"
 }
